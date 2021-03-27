@@ -1,6 +1,15 @@
 <!DOCTYPE html>
+
+<?php
+if(isset($_POST['submitForm'])) {
+    header('location: index.php');
+    
+
+}
+?>
 <html>
 <head>
+
 <title>Request a demo Form </title>
 <style>
 	h1{font-size: 3em;}
@@ -45,7 +54,7 @@
 $name = $email = $phone = $restaurantName = $zipCode = "";
 $errName = $errEmail = $errPhone = $errRestaurant = $errZip = "";
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
 
 	if(empty($POST[$name])){
   		$errName = "You forgot your name.";
@@ -79,6 +88,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 }	
 
+
+
 ?>
 		<div class="form-box">
 
@@ -95,7 +106,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 			<!-- form -->
 			<div class="form">
-				<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+				<form id="demoForm" method="post" action="">  
 					 
 						  <div class="field">Name:<br><input type="text" name="name" value="<?php echo $name;?>">
 						  <span class="error-msg">* <?php echo $errName;?></span></div>
@@ -120,9 +131,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				</form>
 			</div>
 		</div>
-
-
-
-
+		<?php 
+		if($_SERVER["REQUEST_METHOD"] === "POST"){
+			if (isset($_POST['Submit'])){
+				echo "<style>#demoForm{display: none;</style>";
+			}
+		}
+		?>
 </body>
 </html>
