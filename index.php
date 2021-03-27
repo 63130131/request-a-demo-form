@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>How to put PHP in HTML - Simple Example</title>
+<title>Request a demo Form </title>
 <style>
 	h1{font-size: 3em;}
 	h2{font-size:2em;}
 	body{
-		background: coral;
+		font-family: Montserrat;
 	}
 	.form-box{
 		display:flex; 
+		flex-wrap: wrap;
 		justify-content: center;
     	margin: auto;
     	align-items: center;
     	height: 50vw;
-    	background: lightblue;
+	}
+	.form-box > div{
+		padding:3em;
 	}
 
+    input[type="text"]{
+    	width:200px;
+    	padding:1em 0;
+    	border: none !important;
+
+    }
 
 	
 </style>
@@ -26,16 +35,42 @@
 <?php
 
 $name = $email = $phone = $restaurantName = $zipCode = "";
-$errLog = "";
+$errName = $errEmail = $errPhone = $errRestaurant = $errZip = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	if(empty($POST[$name])){
-  		$errLog .= "You forgot your name.";
+  		$errName = "You forgot your name.";
 	} else {
 		$name = $POST["name"];
 	}
+
+	if(empty($POST[$email])){
+  		$errEmail = "You forgot your e-mail.";
+	} else {
+		$email = $POST["email"];
+	}
+
+	if(empty($POST[$phone])){
+  		$errPhone = "You forgot your phone.";
+	} else {
+		$phone = $POST["phone"];
+	}
+
+	if(empty($POST[$restaurantName])){
+  		$errRestaurant = "You forgot your phone.";
+	} else {
+		$restaurantName = $POST["restaurantName"];
+	}
+
+	if(empty($POST[$zipCode])){
+  		$errZip = "Enter restaurant Zip code";
+	} else {
+		$zipCode = $POST["zipCode"];
+	}
+
 }	
+
 ?>
 		<div class="form-box">
 
@@ -54,22 +89,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			<div class="form">
 				<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
 					  Name:<br><input type="text" name="name" value="<?php echo $name;?>">
-					  <span class="error">* <?php echo $errLog;?></span>
+					  <span class="error-msg">* <?php echo $errName;?></span>
 					  <br><br>
 
 					  E-mail:<br><input type="text" name="email" value="<?php echo $email;?>">
-					  <span class="error">* <?php echo $emailErr;?></span>
+					  <span class="error-msg">* <?php echo $errEmail;?></span>
 					  <br><br>
 
 					  Phone:<br><input type="text" name="phone" value="<?php echo $phone;?>">
-					  <span class="error"><?php echo $websiteErr;?></span>
+					  <span class="error-msg">* <?php echo $errPhone;?></span>
 					  <br><br>
 
 					  Restaurant Name:<br><input type="text" name="restaurantName" value="<?php echo $restaurantName;?>">
-					  <span class="error">* <?php echo $errLog;?></span>
+					  <span class="error-msg">* <?php echo $errRestaurant;?></span>
 					  <br><br>
-					  Restaurant Zip Code<br><input type="number" id="quantity" name="quantity" min="1000" max="9000">
-					  <span class="error">* <?php echo $errLog;?></span>
+					  Restaurant Zip Code<br><input type="number" id="quantity" name="zipCode" min="1000" max="9000">
+					  <span class="error-msg">* <?php echo $errZip;?></span>
 					  <br><br>
 					  <input type="submit" name="submitForm" value="Submit">  
 				</form>
