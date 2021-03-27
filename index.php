@@ -7,6 +7,7 @@
 	h2{font-size:2em;}
 	body{
 		font-family: Montserrat;
+		background: lightgrey;
 	}
 	.form-box{
 		display:flex; 
@@ -20,12 +21,19 @@
 		padding:3em;
 	}
 
-    input[type="text"]{
+    input{
     	width:200px;
     	padding:1em 0;
     	border: none !important;
+    	background: none !important;
+    	
+    }
+
+     input:focus{
+    	border-bottom: 2px solid red !important;
 
     }
+ 
 
 	
 </style>
@@ -88,25 +96,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			<!-- form -->
 			<div class="form">
 				<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-					  Name:<br><input type="text" name="name" value="<?php echo $name;?>">
-					  <span class="error-msg">* <?php echo $errName;?></span>
-					  <br><br>
+					 
+						  <div class="field">Name:<br><input type="text" name="name" value="<?php echo $name;?>">
+						  <span class="error-msg">* <?php echo $errName;?></span></div>
 
-					  E-mail:<br><input type="text" name="email" value="<?php echo $email;?>">
-					  <span class="error-msg">* <?php echo $errEmail;?></span>
-					  <br><br>
+						  <br><br>
+						  <div class="field">E-mail:<br><input type="text" name="email" value="<?php echo $email;?>">
+						  <span class="error-msg">* <?php echo $errEmail;?></span></div>
+						  <br><br>
 
-					  Phone:<br><input type="text" name="phone" value="<?php echo $phone;?>">
-					  <span class="error-msg">* <?php echo $errPhone;?></span>
-					  <br><br>
+						  <div class="field">Phone:<br><input type="text" name="phone" value="<?php echo $phone;?>">
+						  <span class="error-msg">* <?php echo $errPhone;?></span></div>
+						  <br><br>
 
-					  Restaurant Name:<br><input type="text" name="restaurantName" value="<?php echo $restaurantName;?>">
-					  <span class="error-msg">* <?php echo $errRestaurant;?></span>
-					  <br><br>
-					  Restaurant Zip Code<br><input type="number" id="quantity" name="zipCode" min="1000" max="9000">
-					  <span class="error-msg">* <?php echo $errZip;?></span>
-					  <br><br>
-					  <input type="submit" name="submitForm" value="Submit">  
+						  <div class="field">Restaurant Name:<br><input type="text" name="restaurantName" value="<?php echo $restaurantName;?>">
+						  <span class="error-msg">* <?php echo $errRestaurant;?></span></div>
+						  <br><br>
+						  <div class="field">Restaurant Zip Code<br><input type="number" id="quantity" name="zipCode" min="1000" max="9000">
+						  <span class="error-msg">* <?php echo $errZip;?></span></div>
+						  <br><br>
+						  <input type="submit" name="submitForm" value="Submit">  
+
 				</form>
 			</div>
 		</div>
