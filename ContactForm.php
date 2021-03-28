@@ -6,14 +6,23 @@
     <title>Contact Form</title>
     <meta charset="utf-8">
     <style>
+
+
+      /* typography */
+      *{font-family: Montserrat;font-size:15px;}
+      a{color: #FD4F57;}
       h1{font-size: 5em;}
-      h2{font-size:2em;}
-      body{
-        font-family: Montserrat;
-        font-size:15px;
-        margin: auto;
-       
-      }
+      h2{ font-size:2em; font-weight: 400; }
+      h5{ font-size:14px; display: inline-block; color: #A0A0A0; font-weight: 400; }
+
+      .highlight{
+          text-decoration: underline;
+          text-transform: capitalize;
+          text-decoration-color: #ffda49;
+          text-decoration-thickness: 3px;
+          font-weight: 800;
+          font-size:1em;
+      } 
 
       /* outer box */
       .form-box{
@@ -34,6 +43,9 @@
 
       label{
         text-transform: uppercase;
+        font-size:15px;
+        font-weight: 600;
+        color:#A0A0A0;
       }
 
         input[type="text"], input[type="number"]{
@@ -42,21 +54,21 @@
           border-top: none;
           border-left: none;
           border-right: none;
-          border-bottom: 1px solid grey !important;
+          border-bottom: 1px solid #A0A0A0 !important;
           background: none !important;
-          transition: all 0.2s ease;
+          /*transition: all 0.2s ease;*/
           
         }
         
        input[type="text"]:focus, input[type="number"]:focus{
           outline: 0;
-          border-bottom: 2px solid red !important;
+          border-bottom: 2px solid #FD4F57 !important;
 
         }
 
         input:focus + label{
           font-size:12px !important;
-          color: red;
+          color: #FD4F57;
          
         }  
 
@@ -71,17 +83,12 @@
           } 
 
         input[type="submit"]:hover{
-
           color: #fff;
-          background:  #fd4f57;
+          background: #fd4f57;
         } 
 
 
-        #legalTerms{
-          padding-left:5px;
-          font-size:12px; 
-          color: #cecece; 
-        }
+   
 
       .form-part{
           display: flex;
@@ -92,17 +99,17 @@
        .errorMsg{
           position:absolute;
           right:0;
-          color:red;
+          color:#FD4F57;
           font-size: 12px;
         }
 
 
-        .highlight{
-          text-decoration: underline;
-          text-transform: capitalize;
-          text-decoration-color: #ffda49;
-          text-decoration-thickness: 3px;
-        }
+     
+
+
+       #legalTerms{
+        padding-left:7px;
+       }
        
     </style>
   </head>
@@ -124,7 +131,7 @@
           if(!preg_match("/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/", $email)){
             $errEmail = 'Invalid email';
           }
-          if(!preg_match('/^[a-zA-Z0-9]{9,30}$/',$phone)){
+          if(strlen($phone) < 8){
             $errPhone = 'Invalid phone';
           }
          
@@ -143,10 +150,10 @@
         <!-- left titles -->
         <div class="title">
           <h1>Request <br> a Demo</h1>
-          <h3>Fill this form to get in front of an <span class="highlight">expert.</span></h3>
-          <span>
-            <a href="#">HAVE A QUESTION?</a>
-            <p>Try giving us a call at <a href="tel:123-456-891"><strong>123-456-891</strong></a> or <a href="#"> <strong>Contact Support</strong> </a></p>
+          <h2>Fill this form to get in<br> front of an <span class="highlight">expert.</span></h2>
+          <span><br>
+            <label>Have a question?</label><br>
+            <h5>Try giving us a call at <a href="tel:123-456-891"><strong>123-456-891</strong></a> or <a href="#"> <strong>Contact Support.</strong> </a></h5>
           </span>
         </div>
         <!-- right form -->
@@ -163,7 +170,7 @@
                     <span class="errorMsg"><?php if(isset($errEmail)) echo $errEmail; ?></span><br>
                 </div>
                 <div class="form-part">
-                    <input type="number" id="quantity" name="phone" >
+                    <input type="text" name="phone" >
                     <label for="phone"> Phone </label>
                     <span class="errorMsg"><?php if(isset($errPhone)) echo $errPhone; ?></span><br>
                 </div>
@@ -180,11 +187,11 @@
                 <br><br>
 
                 <input class="style-1" type="submit" name="submit" value="Submit">
-                <span id="legalTerms" class="terms">By tapping submit, you concede to our Legal Terms.</span>
+                <span id="legalTerms"><h5>By tapping submit, you concede to our Legal Terms.</h5></span>
                 <?php 
                   if(isset($_POST['submit']) && !isset($errName) && !isset($errEmail) && !isset($errPhone) && !isset($errRestaurant) && !isset($errZip)){
                     if(mail('mihalamp@gmail.com', $name, $body)){
-                      echo '<script>document.getElementById("legalTerms").innerHTML = "We will hear from us shortly!";</script>';
+                      echo '<script>document.getElementById("legalTerms").innerHTML = "<h5>Thank you! You will hear from us shortly!</h5>";</script>';
                     }
                   }
                 ?>
