@@ -10,7 +10,8 @@
 
       /* typography */
       *{font-family: Montserrat;font-size:15px;}
-      a{color: #FD4F57;}
+      a{color: #FD4F57; text-decoration: none;}
+      a:hover{color:#e54b50;}
       h1{font-size: 5em;}
       h2{ font-size:2em; font-weight: 400; }
       h5{ font-size:14px; display: inline-block; color: #A0A0A0; font-weight: 400; }
@@ -36,17 +37,15 @@
       .form-box > div{
         padding:3em;
       } 
-
-    
-
-    
-
+      
       label{
         text-transform: uppercase;
         font-size:15px;
         font-weight: 600;
         color:#A0A0A0;
       }
+
+
 
         input[type="text"], input[type="number"]{
           width:100%;
@@ -66,29 +65,33 @@
 
         }
 
-        input:focus + label{
+       /* input:focus + label{
           font-size:12px !important;
           color: #FD4F57;
-         
-        }  
+          transition: all 0.6s ease;
+        }  */
+
+        .fokus{
+          font-size:12px !important;
+          color: #FD4F57;
+          transition: all 0.6s ease;
+        }
 
         /* button */
         input[type="submit"]{
           border: 2px solid #fd4f57;
           color: #FD4F57;
-          padding: 12px 16px;
-          border-radius: 22px;
+          padding: 17px 22px;
+          border-radius: 30px;
           background: none;
           font-size:16px;
+          cursor:pointer;
           } 
 
         input[type="submit"]:hover{
           color: #fff;
           background: #fd4f57;
         } 
-
-
-   
 
       .form-part{
           display: flex;
@@ -102,10 +105,6 @@
           color:#FD4F57;
           font-size: 12px;
         }
-
-
-     
-
 
        #legalTerms{
         padding-left:7px;
@@ -124,6 +123,8 @@
           $phone = htmlspecialchars(stripslashes(trim($_POST['phone'])));
           $restaurant = htmlspecialchars(stripslashes(trim($_POST['restaurant'])));
           $zip = htmlspecialchars(stripslashes(trim($_POST['zip'])));
+
+
 
           if(!preg_match("/^[A-Za-z .'-]+$/", $name)){
             $errName = 'Invalid characters in name';
@@ -160,13 +161,13 @@
         <div class="form">
           <form id="demoForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <div class="form-part">
-                    <input type="text" name="name"> 
+                    <input type="text" name="name" onkeyup="changeTheColorOfButtonDemo();"> 
                     <label for="name">Name</label>
                     <span class="errorMsg"><?php if(isset($errName)) echo $errName; ?></span><br>
                 </div>
                 <div class="form-part">
-                    <input type="text" name="email">
-                    <label for="email">Email</label>
+                    <input id="test" type="text" name="email">
+                    <label class="testL" for="email" style="<?php if(isset($email)) echo "font-size:30px;"; ?>">Email</label>
                     <span class="errorMsg"><?php if(isset($errEmail)) echo $errEmail; ?></span><br>
                 </div>
                 <div class="form-part">
@@ -180,7 +181,7 @@
                     <span class="errorMsg"><?php if(isset($errRestaurant)) echo $errRestaurant; ?></span><br>
                 </div>
                 <div class="form-part">
-                    <input type="number" id="quantity" name="zip" min="1000" max="9000">
+                    <input type="number" id="quantity" name="zip" min="1000" max="9999">
                     <label for="zip"> Restaurant Zip code</label>
                     <span class="errorMsg"><?php if(isset($errZip)) echo $errZip; ?></span><br>
                 </div>
@@ -190,13 +191,45 @@
                 <span id="legalTerms"><h5>By tapping submit, you concede to our Legal Terms.</h5></span>
                 <?php 
                   if(isset($_POST['submit']) && !isset($errName) && !isset($errEmail) && !isset($errPhone) && !isset($errRestaurant) && !isset($errZip)){
-                    if(mail('mihalamp@gmail.com', $name, $body)){
-                      echo '<script>document.getElementById("legalTerms").innerHTML = "<h5>Thank you! You will hear from us shortly!</h5>";</script>';
+                    if(mail('test@mail.com', $name, $body)){
+                      echo '<script>document.getElementById("legalTerms").innerHTML="<h5>Thank you! You will hear from us shortly!</h5>";</script>';
                     }
                   }
                 ?>
           </form>    
         </div>
+
+      <script>   
+
+       /* $('#test').keyup(function()  {
+          alert('Text1 changed!');
+        }); */
+
+
+        $(document).ready(function() {
+          $('#test').on('change', function() {
+            var $this = $(this);
+            var val = $.trim($this.val());
+
+            // toggleClass can be provided a bool value,
+            // If we provide true we add class, if false we remove class
+            $this.toggleClass('fokus', val.length !== 0);
+          }).change();
+          // We also want to call a 'change' event on this just incase the page has
+          // pre-filled in values
+        });
+
+      
+
+
+          /* 
+          if (document.getElementById("test").value !== "") {
+            document.getElementById("demoForm").style.background = "green";
+          } else {
+            document.getElementById("demoForm").style.background = "skyblue";
+          }
+        }*/
+    </script>
     </div>
   
 
