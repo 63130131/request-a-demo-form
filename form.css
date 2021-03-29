@@ -1,0 +1,96 @@
+
+
+/* TYPOGRAPGY */
+*{font-family: Montserrat;font-size:15px;}
+a{color: #FD4F57; text-decoration: none;}
+a:hover{color:#e54b50;}
+h1{font-size: 5em;}
+h2{ font-size:2em; font-weight: 400; }
+h5{ font-size:14px; display: inline-block; color: #A0A0A0; font-weight: 400; }
+.highlight{text-decoration: underline;text-transform: capitalize; text-decoration-color: #ffda49; text-decoration-thickness: 3px;  font-weight: 800;font-size:1em;}
+
+/* MAIN CONTAINER */
+.form-box{
+  display:flex; 
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+  height: 50vw;
+}
+.form-box > div{
+  padding:3em;
+} 
+
+/* INPUT FIELDS */
+.form-part{
+  display: flex;
+  position: relative;
+  flex-direction: column-reverse;
+}
+
+input[type="text"], input[type="number"]{
+  width:100%;
+  /*padding:1em 0;*/
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #A0A0A0;
+  background: none !important;
+  /*transition: all 0.2s ease;*/
+  padding: 13px 0 10px 0;
+  font-size: 30px !important;
+}
+
+input[type="text"]:focus, input[type="number"]:focus{
+  outline: 0;
+  border-bottom: 2px solid #FD4F57 ;
+
+}
+
+/* LABELS */
+label{
+  text-transform: uppercase;
+  font-weight: 600;
+  color:#A0A0A0;
+}
+
+/* label on focus */
+input:focus + label{
+  color: #FD4F57;
+  transition: all 0.6s ease;
+} 
+/* label when input not empty  */
+.fokus, input:focus + label{
+  font-size:70%;
+}
+
+/* BUTTON */
+input[type="submit"]{
+  border: 2px solid #fd4f57;
+  color: #FD4F57;
+  padding: 17px 22px;
+  border-radius: 30px;
+  background: none;
+  font-size:16px;
+  cursor:pointer;
+} 
+
+input[type="submit"]:hover{
+  color: #fff;
+  background: #fd4f57;
+} 
+
+/* ALERTS */
+.errorMsg{
+  position:absolute;
+  right:0;
+  color:#FD4F57;
+  font-size: 12px;
+}
+
+#formMsg{
+  padding-left:7px;
+}
+
+

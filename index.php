@@ -1,89 +1,87 @@
 <!DOCTYPE html>
-
+<?php error_reporting(0); ?>
 <?php
-if(isset($_POST['submitForm'])) {
+/*if(isset($_POST['submit'])) {
     header('location: index.php');
     
 
-}
+}*/
 ?>
 <html>
 <head>
+	<title>Request a demo Form </title>
+	<meta charset="utf-8">
 
-<title>Request a demo Form </title>
-<style>
-	h1{font-size: 3em;}
-	h2{font-size:2em;}
-	body{
-		font-family: Montserrat;
-		background: lightgrey;
-	}
-	.form-box{
-		display:flex; 
-		flex-wrap: wrap;
-		justify-content: center;
-    	margin: auto;
-    	align-items: center;
-    	height: 50vw;
-	}
-	.form-box > div{
-		padding:3em;
-	}
+	<style>
+		h1{font-size: 3em;}
+		h2{font-size:2em;}
+		body{
+			font-family: Montserrat;
+			background: lightgrey;
+		}
+		.form-box{
+			display:flex; 
+			flex-wrap: wrap;
+			justify-content: center;
+	    	margin: auto;
+	    	align-items: center;
+	    	height: 50vw;
+		}
+		.form-box > div{
+			padding:3em;
+		}
 
-    input{
-    	width:200px;
-    	padding:1em 0;
-    	border: none !important;
-    	background: none !important;
-    	
-    }
+	    input{
+	    	width:200px;
+	    	padding:1em 0;
+	    	border: none !important;
+	    	background: none !important;
+	    	
+	    }
+	     input:focus{
+	    	border-bottom: 2px solid red !important;
 
-     input:focus{
-    	border-bottom: 2px solid red !important;
-
-    }
- 
-
-	
-</style>
+	    }	</style>
 </head>
 <body>
 
 <?php
 
 $name = $email = $phone = $restaurantName = $zipCode = "";
-$errName = $errEmail = $errPhone = $errRestaurant = $errZip = "";
 
-if($_SERVER["REQUEST_METHOD"] === "POST"){
+/*$errName = $errEmail = $errPhone = $errRestaurant = $errZip = "";*/
+//** $_SERVER["REQUEST_METHOD"] === "POST" **/
 
-	if(empty($POST[$name])){
+if(isset($_POST['submit'])){
+
+	if(empty($_POST[$name])){
   		$errName = "You forgot your name.";
 	} else {
-		$name = $POST["name"];
+		$name = $_POST["name"];
 	}
 
-	if(empty($POST[$email])){
+	if(empty($_POST[$email])){
   		$errEmail = "You forgot your e-mail.";
 	} else {
-		$email = $POST["email"];
+		$email = $_POST["email"];
 	}
 
-	if(empty($POST[$phone])){
+	if(empty($_POST[$phone])){
   		$errPhone = "You forgot your phone.";
 	} else {
-		$phone = $POST["phone"];
+		$phone = $_POST["phone"];
 	}
 
-	if(empty($POST[$restaurantName])){
+	if(empty($_POST[$restaurantName])){
   		$errRestaurant = "You forgot your phone.";
 	} else {
 		$restaurantName = $POST["restaurantName"];
 	}
 
-	if(empty($POST[$zipCode])){
+	if(empty($_POST[$zipCode])){
   		$errZip = "Enter restaurant Zip code";
 	} else {
-		$zipCode = $POST["zipCode"];
+		$zipCode = $_POST["zipCode"];
 	}
 
 }	
@@ -106,10 +104,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
 			<!-- form -->
 			<div class="form">
-				<form id="demoForm" method="post" action="">  
-					 
+				<form id="demoForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" >  
 						  <div class="field">Name:<br><input type="text" name="name" value="<?php echo $name;?>">
-						  <span class="error-msg">* <?php echo $errName;?></span></div>
+						  <span class="error-msg">* <?php if(isset($errName)) echo $errName;?></span></div>
 
 						  <br><br>
 						  <div class="field">E-mail:<br><input type="text" name="email" value="<?php echo $email;?>">
@@ -126,17 +123,21 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 						  <div class="field">Restaurant Zip Code<br><input type="number" id="quantity" name="zipCode" min="1000" max="9000">
 						  <span class="error-msg">* <?php echo $errZip;?></span></div>
 						  <br><br>
-						  <input type="submit" name="submitForm" value="Submit">  
+						  <input type="submit" name="submit" value="Submit">  
+
+						  	<?php 
+								
+								if(isset($_POST['submit']) && !isset($errName) && !isset($errEmail) && !isset($errPhone) && !isset($errRestaurant) && !isset($errZip) ){
+									/*echo "<style>#demoForm{display: none;</style>";*/ 
+									echo "prodje";
+								} else{
+									 echo '<p>Error occurred, please try again later</p>';
+								}
+								
+								?>
 
 				</form>
 			</div>
 		</div>
-		<?php 
-		if($_SERVER["REQUEST_METHOD"] === "POST"){
-			if (isset($_POST['Submit'])){
-				echo "<style>#demoForm{display: none;</style>";
-			}
-		}
-		?>
-</body>
+	</body>
 </html>
