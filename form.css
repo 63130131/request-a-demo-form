@@ -28,32 +28,38 @@ h5{ font-size:14px; display: inline-block; color: #A0A0A0; font-weight: 400; }
   display: flex;
   position: relative;
   flex-direction: column-reverse;
+  min-height: 100px;
 }
 
-input[type="text"], input[type="number"]{
-  width:100%;
+.inputF{
+   width:100%;
   /*padding:1em 0;*/
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: 1px solid #A0A0A0;
   background: none !important;
-  /*transition: all 0.2s ease;*/
   padding: 13px 0 10px 0;
-  font-size: 30px !important;
-  border-bottom-width: 0px;
+  height: 100%;
+  font-size:30px;
   outline: 0;
 
 }
+  .inputF + label{
+      position: absolute;
+      top: 60px;
+  }
 
-
-
-input[type="text"]:focus, input[type="number"]:focus{
-  outline: 0;
-  border-bottom: 2px solid #FD4F57;
+.inputF:focus{
+  transition: 0.5s;
 }
 
-
+.inputF:focus + label{
+  top: 30px;
+  font-size:12px;
+  color: #FD4F57;
+  transition: all 0.2s ease;
+}
 
 .inputF ~ .border {
  position: absolute;
@@ -61,12 +67,19 @@ input[type="text"]:focus, input[type="number"]:focus{
  left: 0;
  width: 0;
  height: 2px;
- background-color: #27ad8a !important;
+ background-color: #fd4f57 !important;
 }
 
 .inputF:focus ~ .border {
  width: 100%;
- transition: 0.5s;
+ transition: 0.3s;
+
+}
+
+/* label when input not empty */
+.fokus{
+  font-size:12px;
+  top:30px !important;
 }
 
 /*
@@ -90,17 +103,16 @@ label{
   text-transform: uppercase;
   font-weight: 600;
   color:#A0A0A0;
+  min-height: 20px;
 }
 
 /* label on focus */
 input:focus + label{
   color: #FD4F57;
-  transition: all 0.6s ease;
+  
+
 } 
-/* label when input not empty  */
-.fokus, input:focus + label{
-  font-size:70%;
-}
+
 
 /* BUTTON */
 input[type="submit"]{

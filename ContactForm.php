@@ -57,21 +57,25 @@
           <input class="inputF" type="text" name="name"> 
           <label class="labelF" for="name">Name</label>
           <span class="errorMsg"><?php if(isset($errName)) echo $errName; ?></span><br>
+           <span class="border"></span>
         </div>    
         <div class="form-part">
           <input class="inputF" type="text" name="email">
           <label class="labelF" for="email" style="<?php /*if(isset($email)) echo "font-size:30px;";*/ ?>">Email</label>
           <span class="errorMsg"><?php if(isset($errEmail)) echo $errEmail; ?></span><br>
+           <span class="border"></span>
         </div>
         <div class="form-part">
           <input class="inputF"type="text" name="phone" >
           <label class="labelF" for="phone"> Phone </label>
           <span class="errorMsg"><?php if(isset($errPhone)) echo $errPhone; ?></span><br>
+           <span class="border"></span>
         </div>
         <div class="form-part">
           <input class="inputF" type="text" name="restaurant">
           <label class="labelF" for="restaurant">Restaurant Name</label>
           <span class="errorMsg"><?php if(isset($errRestaurant)) echo $errRestaurant; ?></span><br>
+           <span class="border"></span>
         </div>
         <div class="form-part">
           
@@ -91,7 +95,11 @@
 
           if(mail('test@mail.com', $name, $body)){
             /* hide form echo $("#demoForm input").hide(); $("#demoForm .form-part").hide(); ;*/
-            echo '<script> $("#formMsg").html("<h5>Thank you! You will hear from us shortly!</h5>").fadeIn(500); </script>';
+            echo '<script> $("#formMsg").html("<h5>Thank you! You will hear from us shortly!</h5>").fadeIn(500);
+                            
+                  $(".style-1").css("background-color","#FD4F57");
+
+             </script>';
 
           }
         }
@@ -107,11 +115,28 @@
           $('.inputF').on('change', function() {
             var $this = $(this);
             var val = $.trim($(this).val());
-            $(this).css("font-size","30px !important");
+            
             /* when typing toggle class fokus */
             $this.parent().find('.labelF').toggleClass('fokus', val.length !== 0);
           }).change();
+
+          /*$('.inputF').on('focus', function() {
+              $(this).css('background-color', 'red');
+          });*/
+
+         /* var form = $( "#demoForm" );
+            form.validate();
+            $( "button" ).click(function() {
+              alert( "Valid: " + form.valid() );
+            });*/
+
+
+
         });
+
+
+
+
       </script>
 
 
