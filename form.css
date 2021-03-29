@@ -17,6 +17,7 @@ h5{ font-size:14px; display: inline-block; color: #A0A0A0; font-weight: 400; }
   margin: auto;
   align-items: center;
   height: 50vw;
+  background: lightgrey;
 }
 .form-box > div{
   padding:3em;
@@ -40,13 +41,49 @@ input[type="text"], input[type="number"]{
   /*transition: all 0.2s ease;*/
   padding: 13px 0 10px 0;
   font-size: 30px !important;
+  border-bottom-width: 0px;
+  outline: 0;
+
 }
+
+
 
 input[type="text"]:focus, input[type="number"]:focus{
   outline: 0;
-  border-bottom: 2px solid #FD4F57 ;
-
+  border-bottom: 2px solid #FD4F57;
 }
+
+
+
+.inputF ~ .border {
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ width: 0;
+ height: 2px;
+ background-color: #27ad8a !important;
+}
+
+.inputF:focus ~ .border {
+ width: 100%;
+ transition: 0.5s;
+}
+
+/*
+.form-part::before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #FD4F57;;
+  transition: width 300ms;
+}
+
+.form-part:hover::before {
+  width: 100%;
+}
+*/
+
 
 /* LABELS */
 label{

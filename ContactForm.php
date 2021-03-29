@@ -74,9 +74,12 @@
           <span class="errorMsg"><?php if(isset($errRestaurant)) echo $errRestaurant; ?></span><br>
         </div>
         <div class="form-part">
+          
           <input class="inputF" type="number" id="quantity" name="zip" min="1000" max="9999">
           <label class="labelF" for="zip"> Restaurant Zip code</label>
           <span class="errorMsg"><?php if(isset($errZip)) echo $errZip; ?></span><br>
+          <span class="border"></span>
+         
         </div>
         <br><br>
         <input class="style-1" type="submit" name="submit" value="Submit">
@@ -104,6 +107,7 @@
           $('.inputF').on('change', function() {
             var $this = $(this);
             var val = $.trim($(this).val());
+            $(this).css("font-size","30px !important");
             /* when typing toggle class fokus */
             $this.parent().find('.labelF').toggleClass('fokus', val.length !== 0);
           }).change();
