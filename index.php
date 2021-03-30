@@ -105,22 +105,22 @@ if(isset($_POST['submit'])){
 			<!-- form -->
 			<div class="form">
 				<form id="demoForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" >  
-						  <div class="field">Name:<br><input type="text" name="name" value="<?php echo $name;?>">
+						  <div class="field">Name:<br><input id="nameF" type="text" name="name" value="<?php echo $name;?>">
 						  <span class="error-msg">* <?php if(isset($errName)) echo $errName;?></span></div>
 
 						  <br><br>
-						  <div class="field">E-mail:<br><input type="text" name="email" value="<?php echo $email;?>">
+						  <div class="field">E-mail:<br><input id="emailF" type="text" name="email" value="<?php echo $email;?>">
 						  <span class="error-msg">* <?php echo $errEmail;?></span></div>
 						  <br><br>
 
-						  <div class="field">Phone:<br><input type="text" name="phone" value="<?php echo $phone;?>">
+						  <div class="field">Phone:<br><input id="phoneF" type="text" name="phone" value="<?php echo $phone;?>">
 						  <span class="error-msg">* <?php echo $errPhone;?></span></div>
 						  <br><br>
 
-						  <div class="field">Restaurant Name:<br><input type="text" name="restaurantName" value="<?php echo $restaurantName;?>">
+						  <div class="field">Restaurant Name:<br><input id="restaurantF" type="text" name="restaurantName" value="<?php echo $restaurantName;?>">
 						  <span class="error-msg">* <?php echo $errRestaurant;?></span></div>
 						  <br><br>
-						  <div class="field">Restaurant Zip Code<br><input type="number" id="quantity" name="zipCode" min="1000" max="9000">
+						  <div class="field">Restaurant Zip Code<br><input  id="zipF" type="number" id="quantity" name="zipCode" min="1000" max="9000">
 						  <span class="error-msg">* <?php echo $errZip;?></span></div>
 						  <br><br>
 						  <input type="submit" name="submit" value="Submit">  

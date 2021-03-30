@@ -23,16 +23,15 @@ h5{ font-size:14px; display: inline-block; color: #A0A0A0; font-weight: 400; }
   padding:3em;
 } 
 
-/* INPUT FIELDS */
+/* FORM */
 .form-part{
   display: flex;
   position: relative;
   flex-direction: column-reverse;
   min-height: 100px;
 }
-
 .inputF{
-   width:100%;
+  width:100%;
   /*padding:1em 0;*/
   border-top: none;
   border-left: none;
@@ -45,22 +44,29 @@ h5{ font-size:14px; display: inline-block; color: #A0A0A0; font-weight: 400; }
   outline: 0;
 
 }
-  .inputF + label{
+
+/* labels */
+.inputF + label{
       position: absolute;
-      top: 60px;
-  }
-
-.inputF:focus{
-  transition: 0.5s;
+      top: 60%;
+      text-transform: uppercase;
+      font-weight: 600;
+      color:#A0A0A0;
+      min-height: 20px;
 }
-
 .inputF:focus + label{
-  top: 30px;
-  font-size:12px;
-  color: #FD4F57;
+  top: 30%;
+  font-size:10px;
+  /*color: #FD4F57;*/
   transition: all 0.2s ease;
 }
+/* input not empty ? toggle this class */
+.fokus{
+  font-size:10px;
+  top:30% !important;
+}
 
+/* animated border */
 .inputF ~ .border {
  position: absolute;
  bottom: 0;
@@ -69,49 +75,10 @@ h5{ font-size:14px; display: inline-block; color: #A0A0A0; font-weight: 400; }
  height: 2px;
  background-color: #fd4f57 !important;
 }
-
 .inputF:focus ~ .border {
  width: 100%;
  transition: 0.3s;
-
 }
-
-/* label when input not empty */
-.fokus{
-  font-size:12px;
-  top:30px !important;
-}
-
-/*
-.form-part::before {
-  content: " ";
-  display: block;
-  width: 0;
-  height: 2px;
-  background: #FD4F57;;
-  transition: width 300ms;
-}
-
-.form-part:hover::before {
-  width: 100%;
-}
-*/
-
-
-/* LABELS */
-label{
-  text-transform: uppercase;
-  font-weight: 600;
-  color:#A0A0A0;
-  min-height: 20px;
-}
-
-/* label on focus */
-input:focus + label{
-  color: #FD4F57;
-  
-
-} 
 
 
 /* BUTTON */

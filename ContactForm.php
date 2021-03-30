@@ -18,22 +18,33 @@
     $restaurant = htmlspecialchars(stripslashes(trim($_POST['restaurant'])));
     $zip = htmlspecialchars(stripslashes(trim($_POST['zip'])));
 
-    if(!preg_match("/^[A-Za-z .'-]+$/", $name)){
-      $errName = 'Invalid name.';
-    } 
-    if(!preg_match("/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/", $email)){
-      $errEmail = 'Invalid email';
+    if(empty($name)){
+      $errName = "Please enter your name";
+    } elseif(!preg_match("/^[A-Za-z .'-]+$/", $name)){
+      $errName = "Can't contain any numbers.";
     }
-    if(strlen($phone) < 8){
-      $errPhone = 'Invalid phone.';
+    if(empty($email)){
+       $errEmail = "Please enter your email.";
+    } elseif(!preg_match("/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/", $email)){
+      $errEmail = "Invalid email.";
     }
-
-    if(!preg_match("/^[A-Za-z .'-]+$/", $restaurant)){
-      $errRestaurant = 'Invalid characters.';
+    if(empty($phone)){
+      $errPhone = "Please enter your phone.";
     }
-
-    if(strlen((string)$zip) === 0){
-      $errZip = 'Zip code should be between 1000 and 9999.';
+    elseif(strlen($phone) < 8){
+      $errPhone = "Must contain at least 8 numbers.";
+    }
+    if(empty($restaurant)){
+       $errRestaurant = "Please enter restaurant name.";
+    }
+    elseif(!preg_match("/^[A-Za-z .'-]+$/", $restaurant)){
+      $errRestaurant = "Invalid name. Can't contain any numbers.";
+    }
+    if(empty($zip)){
+      $errZip = "Please enter your zip code.";
+    }
+    elseif(strlen((string)$zip) === 0){
+      $errZip = "Code should be a number between 1000 and 9999.";
     }
   }
   ?>
@@ -54,34 +65,34 @@
     <div class="form">
       <form id="demoForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="form-part">
-          <input class="inputF" type="text" name="name"> 
-          <label class="labelF" for="name">Name</label>
-          <span class="errorMsg"><?php if(isset($errName)) echo $errName; ?></span><br>
+          <input class="inputF" type="text" name="name" value="<?php echo isset($name) ? $name : ''; ?>"> 
+          <label class="labelF" for="name" style="<?php echo isset($errName) ? "color:#FD4F57;" : "" ; ?>">Name</label>
+          <span class="errorMsg"><?php echo isset($errName) ? $errName : ''; ?></span><br>
            <span class="border"></span>
         </div>    
         <div class="form-part">
-          <input class="inputF" type="text" name="email">
-          <label class="labelF" for="email" style="<?php /*if(isset($email)) echo "font-size:30px;";*/ ?>">Email</label>
-          <span class="errorMsg"><?php if(isset($errEmail)) echo $errEmail; ?></span><br>
+          <input class="inputF" type="text" name="email" value="<?php echo isset($email) ? $email : ''; ?>">
+          <label class="labelF" for="email" style="<?php echo isset($errEmail) ? "color:#FD4F57;" : "" ; ?>">Email</label>
+          <span class="errorMsg"><?php echo isset($errEmail) ? $errEmail : ''; ?></span><br>
            <span class="border"></span>
         </div>
         <div class="form-part">
-          <input class="inputF"type="text" name="phone" >
-          <label class="labelF" for="phone"> Phone </label>
-          <span class="errorMsg"><?php if(isset($errPhone)) echo $errPhone; ?></span><br>
+          <input class="inputF"type="text" name="phone" value="<?php echo isset($phone) ? $phone : ''; ?>">
+          <label class="labelF" for="phone" style="<?php echo isset($errPhone) ? "color:#FD4F57;" : "" ; ?>"> Phone </label>
+          <span class="errorMsg"><?php echo isset($errPhone) ? $errPhone : ''; ?></span><br>
            <span class="border"></span>
         </div>
         <div class="form-part">
-          <input class="inputF" type="text" name="restaurant">
-          <label class="labelF" for="restaurant">Restaurant Name</label>
-          <span class="errorMsg"><?php if(isset($errRestaurant)) echo $errRestaurant; ?></span><br>
+          <input class="inputF" type="text" name="restaurant" value="<?php echo isset($restaurant) ? $restaurant : ''; ?>">
+          <label class="labelF" for="restaurant" style="<?php echo isset($errRestaurant) ? "color:#FD4F57;" : "" ; ?>">Restaurant Name</label>
+          <span class="errorMsg"><?php echo isset($errRestaurant) ? $errRestaurant : ''; ?></span><br>
            <span class="border"></span>
         </div>
         <div class="form-part">
           
-          <input class="inputF" type="number" id="quantity" name="zip" min="1000" max="9999">
-          <label class="labelF" for="zip"> Restaurant Zip code</label>
-          <span class="errorMsg"><?php if(isset($errZip)) echo $errZip; ?></span><br>
+          <input class="inputF" type="number" id="quantity" name="zip" min="1000" max="9999" value="<?php echo isset($zip) ? $zip : ''; ?>">
+          <label class="labelF" for="zip" style="<?php echo isset($errZip) ? "color:#FD4F57;" : "" ; ?>"> Restaurant Zip code</label>
+          <span class="errorMsg"><?php echo isset($errZip) ? $errZip : ''; ?></span><br>
           <span class="border"></span>
          
         </div>
@@ -103,6 +114,8 @@
 
           }
         }
+
+
         ?>
       </form>    
     </div>
@@ -129,7 +142,6 @@
             $( "button" ).click(function() {
               alert( "Valid: " + form.valid() );
             });*/
-
 
 
         });
