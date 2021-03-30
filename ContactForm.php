@@ -24,7 +24,6 @@
      
     } elseif(!preg_match("/^[A-Za-z .'-]+$/", $name)){
       $errName = "Can't contain any numbers.";
-  
     }
     if(empty($email)){
        $errEmail = "Please enter your email.";
@@ -33,20 +32,17 @@
     }
     if(empty($phone)){
       $errPhone = "Please enter your phone.";
-    }
-    elseif(strlen($phone) < 8){
+    } elseif(strlen($phone) < 8){
       $errPhone = "Must contain at least 8 numbers.";
     }
     if(empty($restaurant)){
        $errRestaurant = "Please enter restaurant name.";
-    }
-    elseif(!preg_match("/^[A-Za-z .'-]+$/", $restaurant)){
+    } elseif(!preg_match("/^[A-Za-z .'-]+$/", $restaurant)){
       $errRestaurant = "Invalid name. Can't contain any numbers.";
     }
     if(empty($zip)){
       $errZip = "Please enter your zip code.";
-    }
-    elseif(strlen((string)$zip) === 0){
+    } elseif(strlen((string)$zip) === 0){
       $errZip = "Code should be a number between 1000 and 9999.";
     }
   } 
@@ -92,12 +88,10 @@
            <span class="border"></span>
         </div>
         <div class="form-part">
-          
           <input class="inputF" type="number" id="quantity" name="zip" min="1000" max="9999" value="<?php echo isset($zip) ? $zip : ''; ?>">
           <label class="labelF" for="zip" style="<?php echo isset($errZip) ? "color:#FD4F57;" : "" ; ?>"> Restaurant Zip code</label>
           <span class="errorMsg"><?php echo isset($errZip) ? $errZip : ''; ?></span><br>
           <span class="border"></span>
-         
         </div>
         <br><br>
         <input id="submitBtn" class="style-1" type="submit" name="submit" value="Submit">
@@ -111,37 +105,27 @@
    <?php 
         if(isset($_POST['submit']) && !isset($errName) && !isset($errEmail) && !isset($errPhone) && !isset($errRestaurant) && !isset($errZip)){
           $body = $name . ' made a request ' . ' from restaurant ' . $restaurant;
-
-          if(mail('test@mail.com', $name, $body)){
-            
+          if(mail('test@mail.com', $name, $body)){     
             echo '<script> 
             $("#demoForm").fadeOut(0);
             $("#successMsg").fadeIn();
             </script>';
-
           }
         }
-        ?>
+  ?>
 
   <script>   
-       /* $('#test').keyup(function()  {
-          alert('Text1 changed!');
-        }); */
-        $(document).ready(function() {
 
+        $(document).ready(function() {
           $('.inputF').on('change', function() {
             var $this = $(this);
             var val = $.trim($(this).val());
             $this.parent().find('.labelF').toggleClass('fokus', val.length !== 0);
             /* extra JS field validations */
           }).change();
-
-
-
         });
 
-      </script>
-
+  </script>
 
 </body>
 </html>
