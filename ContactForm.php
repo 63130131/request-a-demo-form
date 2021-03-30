@@ -17,11 +17,14 @@
     $phone = htmlspecialchars(stripslashes(trim($_POST['phone'])));
     $restaurant = htmlspecialchars(stripslashes(trim($_POST['restaurant'])));
     $zip = htmlspecialchars(stripslashes(trim($_POST['zip'])));
+    $errors = false;
 
     if(empty($name)){
       $errName = "Please enter your name";
+     
     } elseif(!preg_match("/^[A-Za-z .'-]+$/", $name)){
       $errName = "Can't contain any numbers.";
+  
     }
     if(empty($email)){
        $errEmail = "Please enter your email.";
@@ -46,7 +49,7 @@
     elseif(strlen((string)$zip) === 0){
       $errZip = "Code should be a number between 1000 and 9999.";
     }
-  }
+  } 
   ?>
 
   <div class="form-box">
@@ -97,57 +100,45 @@
          
         </div>
         <br><br>
-        <input class="style-1" type="submit" name="submit" value="Submit">
+        <input id="submitBtn" class="style-1" type="submit" name="submit" value="Submit">
         <span id="formMsg"><h5>By tapping submit, you concede to our Legal Terms.</h5></span>
+      </form>  
+      <span id="successMsg" style="display:none;"><h3>Thank you! Your demo is on the way. </h3></span> 
+    </div>
+    
+  </div>
 
-        <?php 
+   <?php 
         if(isset($_POST['submit']) && !isset($errName) && !isset($errEmail) && !isset($errPhone) && !isset($errRestaurant) && !isset($errZip)){
           $body = $name . ' made a request ' . ' from restaurant ' . $restaurant;
 
           if(mail('test@mail.com', $name, $body)){
-            /* hide form echo $("#demoForm input").hide(); $("#demoForm .form-part").hide(); ;*/
-            echo '<script> $("#formMsg").html("<h5>Thank you! You will hear from us shortly!</h5>").fadeIn(500);
-                            
-                  $(".style-1").css("background-color","#FD4F57");
-
-             </script>';
+            
+            echo '<script> 
+            $("#demoForm").fadeOut(200);
+            $("#successMsg").delay(0).fadeIn();
+            </script>';
 
           }
         }
-
-
         ?>
-      </form>    
-    </div>
-  </div>
+
   <script>   
        /* $('#test').keyup(function()  {
           alert('Text1 changed!');
         }); */
         $(document).ready(function() {
+
           $('.inputF').on('change', function() {
             var $this = $(this);
             var val = $.trim($(this).val());
-            
-            /* when typing toggle class fokus */
             $this.parent().find('.labelF').toggleClass('fokus', val.length !== 0);
+            /* extra JS field validations */
           }).change();
 
-          /*$('.inputF').on('focus', function() {
-              $(this).css('background-color', 'red');
-          });*/
-
-         /* var form = $( "#demoForm" );
-            form.validate();
-            $( "button" ).click(function() {
-              alert( "Valid: " + form.valid() );
-            });*/
 
 
         });
-
-
-
 
       </script>
 
