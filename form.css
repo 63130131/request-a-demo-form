@@ -109,6 +109,7 @@ input[type="submit"]:hover{
   right:0;
   color:#FD4F57;
   font-size: 12px;
+  bottom: 12px;
 }
 
 #formMsg{
