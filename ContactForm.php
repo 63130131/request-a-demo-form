@@ -115,8 +115,8 @@
           if(mail('test@mail.com', $name, $body)){
             
             echo '<script> 
-            $("#demoForm").fadeOut(200);
-            $("#successMsg").delay(0).fadeIn();
+            $("#demoForm").fadeOut(0);
+            $("#successMsg").fadeIn();
             </script>';
 
           }
