@@ -117,13 +117,36 @@
   <script>   
 
         $(document).ready(function() {
+
           $('.inputF').on('change', function() {
             var $this = $(this);
             var val = $.trim($(this).val());
             $this.parent().find('.labelF').toggleClass('fokus', val.length !== 0);
-            /* extra JS field validations */
+            /* extra jQ field validations */
           }).change();
+
+          /* color submit btn if all inputs filled */
+          validateF();
+          $('input').on('keyup', validateF);
+
         });
+
+        function validateF() {
+            var withValues = 0;
+            var allInputs = $("input:not([type='submit'])");
+
+            allInputs.each(function(e) {
+              if ($(this).val()) {
+                withValues += 1;
+              }
+            });
+
+            if (withValues == allInputs.length){
+              $("#submitBtn").addClass("filledBtn");
+            } else{
+               $("#submitBtn").removeClass("filledBtn");
+            }
+        }
 
   </script>
 

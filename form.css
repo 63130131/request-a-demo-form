@@ -97,6 +97,12 @@ input[type="submit"]:hover{
   background: #fd4f57;
 } 
 
+.filledBtn{
+  background: #fd4f57 !important;
+  color:white !important;
+  transition: 0.3s ease;
+}
+
 /* ALERTS */
 .errorMsg{
   position:absolute;
