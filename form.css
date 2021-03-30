@@ -24,6 +24,11 @@ h5{ font-size:14px; display: inline-block; color: #A0A0A0; font-weight: 400; }
 } 
 
 /* FORM */
+
+.form{
+ flex-grow: 1;
+}
+
 .form-part{
   display: flex;
   position: relative;
