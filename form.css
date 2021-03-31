@@ -16,20 +16,26 @@ h5{ font-size:14px; display: inline-block; color: #A0A0A0; font-weight: 400; }
   justify-content: center;
   margin: auto;
   align-items: center;
-  height: 50vw;
+  height: 100vh;
+
 }
 .form-box > div{
   padding:3em;
 } 
 
-/* INPUT FIELDS */
+/* FORM */
+
+.form{
+ flex-grow: 0;
+}
+
 .form-part{
   display: flex;
   position: relative;
   flex-direction: column-reverse;
+  min-height: 100px;
 }
-
-input[type="text"], input[type="number"]{
+.inputF{
   width:100%;
   /*padding:1em 0;*/
   border-top: none;
@@ -37,33 +43,48 @@ input[type="text"], input[type="number"]{
   border-right: none;
   border-bottom: 1px solid #A0A0A0;
   background: none !important;
-  /*transition: all 0.2s ease;*/
   padding: 13px 0 10px 0;
-  font-size: 30px !important;
-}
-
-input[type="text"]:focus, input[type="number"]:focus{
+  height: 100%;
+  font-size:30px;
   outline: 0;
-  border-bottom: 2px solid #FD4F57 ;
 
 }
 
-/* LABELS */
-label{
-  text-transform: uppercase;
-  font-weight: 600;
-  color:#A0A0A0;
+/* labels */
+.inputF + label{
+      position: absolute;
+      top: 60%;
+      text-transform: uppercase;
+      font-weight: 600;
+      color:#A0A0A0;
+      min-height: 20px;
+}
+.inputF:focus + label{
+  top: 30%;
+  font-size:10px;
+  /*color: #FD4F57;*/
+  transition: all 0.2s ease;
+}
+/* input not empty ? toggle this class */
+.fokus{
+  font-size:10px;
+  top:30% !important;
 }
 
-/* label on focus */
-input:focus + label{
-  color: #FD4F57;
-  transition: all 0.6s ease;
-} 
-/* label when input not empty  */
-.fokus, input:focus + label{
-  font-size:70%;
+/* animated border */
+.inputF ~ .border {
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ width: 0;
+ height: 2px;
+ background-color: #fd4f57 !important;
 }
+.inputF:focus ~ .border {
+ width: 100%;
+ transition: 0.3s;
+}
+
 
 /* BUTTON */
 input[type="submit"]{
@@ -81,12 +102,19 @@ input[type="submit"]:hover{
   background: #fd4f57;
 } 
 
+.filledBtn{
+  background: #fd4f57 !important;
+  color:white !important;
+  transition: 0.3s ease;
+}
+
 /* ALERTS */
 .errorMsg{
   position:absolute;
   right:0;
   color:#FD4F57;
   font-size: 12px;
+  bottom: 12px;
 }
 
 #formMsg{
