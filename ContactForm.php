@@ -62,42 +62,42 @@
 
     <!-- right basis -->
     <div class="form">
-      <form id="demoForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-        <div class="form-part">
-          <input class="inputF" type="text" name="name" value="<?php echo isset($name) ? $name : ''; ?>"> 
-          <label class="labelF" for="name" style="<?php echo isset($errName) ? "color:#FD4F57;" : "" ; ?>">Name</label>
-          <span class="errorMsg"><?php echo isset($errName) ? $errName : ''; ?></span><br>
-           <span class="border"></span>
-        </div>    
-        <div class="form-part">
-          <input class="inputF" type="text" name="email" value="<?php echo isset($email) ? $email : ''; ?>">
-          <label class="labelF" for="email" style="<?php echo isset($errEmail) ? "color:#FD4F57;" : "" ; ?>">Email</label>
-          <span class="errorMsg"><?php echo isset($errEmail) ? $errEmail : ''; ?></span><br>
-           <span class="border"></span>
-        </div>
-        <div class="form-part">
-          <input class="inputF"type="text" name="phone" value="<?php echo isset($phone) ? $phone : ''; ?>">
-          <label class="labelF" for="phone" style="<?php echo isset($errPhone) ? "color:#FD4F57;" : "" ; ?>"> Phone </label>
-          <span class="errorMsg"><?php echo isset($errPhone) ? $errPhone : ''; ?></span><br>
-           <span class="border"></span>
-        </div>
-        <div class="form-part">
-          <input class="inputF" type="text" name="restaurant" value="<?php echo isset($restaurant) ? $restaurant : ''; ?>">
-          <label class="labelF" for="restaurant" style="<?php echo isset($errRestaurant) ? "color:#FD4F57;" : "" ; ?>">Restaurant Name</label>
-          <span class="errorMsg"><?php echo isset($errRestaurant) ? $errRestaurant : ''; ?></span><br>
-           <span class="border"></span>
-        </div>
-        <div class="form-part">
-          <input class="inputF" type="number" id="quantity" name="zip" min="1000" max="9999" value="<?php echo isset($zip) ? $zip : ''; ?>">
-          <label class="labelF" for="zip" style="<?php echo isset($errZip) ? "color:#FD4F57;" : "" ; ?>"> Restaurant Zip code</label>
-          <span class="errorMsg"><?php echo isset($errZip) ? $errZip : ''; ?></span><br>
-          <span class="border"></span>
-        </div>
-        <br><br>
-        <input id="submitBtn" class="style-1" type="submit" name="submit" value="Submit">
-        <span id="formMsg"><h5>By tapping submit, you concede to our Legal Terms.</h5></span>
-      </form>  
-      <span id="successMsg" style="display:none;"><h3>Thank you! Your demo is on the way. </h3></span> 
+        <form id="demoForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+          <div class="form-part">
+            <input class="inputF" type="text" name="name" value="<?php echo isset($name) ? $name : ''; ?>"> 
+            <label class="labelF" for="name" style="<?php echo isset($errName) ? "color:#FD4F57;" : "" ; ?>">Name</label>
+            <span class="errorMsg"><?php echo isset($errName) ? $errName : ''; ?></span><br>
+             <span class="border"></span>
+          </div>    
+          <div class="form-part">
+            <input class="inputF" type="text" name="email" value="<?php echo isset($email) ? $email : ''; ?>">
+            <label class="labelF" for="email" style="<?php echo isset($errEmail) ? "color:#FD4F57;" : "" ; ?>">Email</label>
+            <span class="errorMsg"><?php echo isset($errEmail) ? $errEmail : ''; ?></span><br>
+             <span class="border"></span>
+          </div>
+          <div class="form-part">
+            <input class="inputF"type="text" name="phone" value="<?php echo isset($phone) ? $phone : ''; ?>">
+            <label class="labelF" for="phone" style="<?php echo isset($errPhone) ? "color:#FD4F57;" : "" ; ?>"> Phone </label>
+            <span class="errorMsg"><?php echo isset($errPhone) ? $errPhone : ''; ?></span><br>
+             <span class="border"></span>
+          </div>
+          <div class="form-part">
+            <input class="inputF" type="text" name="restaurant" value="<?php echo isset($restaurant) ? $restaurant : ''; ?>">
+            <label class="labelF" for="restaurant" style="<?php echo isset($errRestaurant) ? "color:#FD4F57;" : "" ; ?>">Restaurant Name</label>
+            <span class="errorMsg"><?php echo isset($errRestaurant) ? $errRestaurant : ''; ?></span><br>
+             <span class="border"></span>
+          </div>
+          <div class="form-part">
+            <input class="inputF" type="number" id="quantity" name="zip" min="1000" max="9999" value="<?php echo isset($zip) ? $zip : ''; ?>">
+            <label class="labelF" for="zip" style="<?php echo isset($errZip) ? "color:#FD4F57;" : "" ; ?>"> Restaurant Zip code</label>
+            <span class="errorMsg"><?php echo isset($errZip) ? $errZip : ''; ?></span><br>
+            <span class="border"></span>
+          </div>
+          <br><br>
+          <input id="submitBtn" class="style-1" type="submit" name="submit" value="Submit">
+          <span id="formMsg"><h5>By tapping submit, you concede to our Legal Terms.</h5></span>
+        </form>  
+        <div id="successMsg" style="display:none;"><h3>Thank you! Your demo is on the way. </h3></div> 
     </div>
     
   </div>
@@ -117,7 +117,6 @@
   <script>   
 
         $(document).ready(function() {
-
           $('.inputF').on('change', function() {
             var $this = $(this);
             var val = $.trim($(this).val());
@@ -131,16 +130,15 @@
 
         });
 
+
         function validateF() {
             var withValues = 0;
             var allInputs = $("input:not([type='submit'])");
-
             allInputs.each(function(e) {
               if ($(this).val()) {
                 withValues += 1;
               }
             });
-
             if (withValues == allInputs.length){
               $("#submitBtn").addClass("filledBtn");
             } else{
